@@ -6,5 +6,8 @@
   },
   "dependencies": {
     "npx": "^10.2.2"
+  },
+  "devDependencies": {
+    "sass": "^1.62.0"
   }
 }

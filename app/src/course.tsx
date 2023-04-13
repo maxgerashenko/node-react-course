@@ -16,7 +16,7 @@ export default function Course() {
   const isFetch = true;
 
   return (
-    <div>
+    <div className="app-course">
       {isConditions && <Conditions />}
       {isHigherOrderFunction && (
         <React.Fragment>
