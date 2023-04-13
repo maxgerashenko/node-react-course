@@ -2,6 +2,7 @@ import * as React from 'react';
 import Conditions from './conditions';
 import FetchComponent from './fetchComponent';
 import { Counter, HigherOrderFunction } from './higherOrderFunction';
+import { PropsToList } from './propsToList';
 
 type Status = 'info' | 'warning' | 'error';
 type NotificationProps = {
@@ -24,6 +25,7 @@ export default function Course() {
         </React.Fragment>
       )}
       {isFetch && <FetchComponent />}
+      <PropsToList />
     </div>
   );
 }
