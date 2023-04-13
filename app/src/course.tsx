@@ -3,6 +3,7 @@ import Conditions from './conditions';
 import FetchComponent from './fetchComponent';
 import { Counter, HigherOrderFunction } from './higherOrderFunction';
 import { PropsToList } from './propsToList';
+import { StateToComponent } from './stateToComponent';
 
 type Status = 'info' | 'warning' | 'error';
 type NotificationProps = {
@@ -26,6 +27,7 @@ export default function Course() {
       )}
       {isFetch && <FetchComponent />}
       <PropsToList />
+      <StateToComponent />
     </div>
   );
 }
