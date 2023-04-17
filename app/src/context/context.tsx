@@ -7,6 +7,7 @@ export function Context() {
   const [theme, setTheme] = useState('dark');
   return (
     <>
+      <h3>Context Reducer</h3>
       <Providers theme={theme} setTheme={setTheme}>
         <WelcomePanel />
         <label>
