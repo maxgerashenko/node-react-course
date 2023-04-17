@@ -1,8 +1,12 @@
 import { useContext } from 'react';
 import { ThemeContext } from './context';
 
-export function Button({ children }: any) {
-  const { theme }: any = useContext(ThemeContext);
+export function Button({ children, disabled, onClick }) {
+  const { theme } = useContext(ThemeContext);
   const className = 'button-' + theme;
-  return <button className={className}>{children}</button>;
+  return (
+    <button className={className} disabled={disabled} onClick={onClick}>
+      {children}
+    </button>
+  );
 }
