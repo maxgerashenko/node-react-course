@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Greeting } from './greeting';
 import { LoginForm } from './loginForm';
 import { Panel } from './panel';
-import { CurrentUserContext } from './providers';
+import { CurrentUserContext } from './contexts';
 
 export function WelcomePanel({ children }: any) {
   const { currentUser } = useContext<any>(CurrentUserContext);

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { ThemeContext } from './providers';
+import { ThemeContext } from './contexts';
 
 export function Panel({ title, children }: any) {
   const { theme }: any = useContext(ThemeContext);

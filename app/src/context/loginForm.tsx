@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { Button } from './button';
-import { CurrentUserContext } from './providers';
+import { CurrentUserContext } from './contexts';
 
 export function LoginForm() {
   const { setCurrentUser }: any = useContext(CurrentUserContext);
