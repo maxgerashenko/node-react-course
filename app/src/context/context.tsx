@@ -1,13 +1,7 @@
 import './styles.scss';
-import { createContext, useContext, useState } from 'react';
-import { Form } from './form';
-import { CheckBox } from './checkBox';
+import { createContext, useState } from 'react';
 import { Providers } from './providers';
 import { WelcomePanel } from './welcomePanel';
-
-export const ThemeContext = createContext<null | { theme: any; setTheme: any }>(
-  null
-);
 
 export function Context() {
   const [theme, setTheme] = useState('dark');

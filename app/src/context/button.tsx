@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { ThemeContext } from './context';
+import { ThemeContext } from './providers';
 
-export function Button({ children, disabled, onClick }) {
-  const { theme } = useContext(ThemeContext);
+export function Button({ children, disabled, onClick }: any) {
+  const { theme }: any = useContext(ThemeContext);
   const className = 'button-' + theme;
   return (
     <button className={className} disabled={disabled} onClick={onClick}>

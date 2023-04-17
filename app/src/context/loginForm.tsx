@@ -1,8 +1,9 @@
 import { useContext, useState } from 'react';
+import { Button } from './button';
 import { CurrentUserContext } from './providers';
 
 export function LoginForm() {
-  const { setCurrentUser } = useContext(CurrentUserContext);
+  const { setCurrentUser }: any = useContext(CurrentUserContext);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const canLogin = firstName !== '' && lastName !== '';

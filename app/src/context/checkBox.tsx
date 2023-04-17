@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { ThemeContext } from './context';
+import { ThemeContext } from './providers';
 
 export function CheckBox() {
   const { theme, setTheme } = useContext(ThemeContext)!;
