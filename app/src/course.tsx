@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Conditions from './conditions';
+import { Context } from './context/context';
 import FetchComponent from './fetchComponent';
 import { Counter, HigherOrderFunction } from './higherOrderFunction';
 import { PropsToList } from './propsToList';
@@ -18,6 +19,7 @@ export default function Course() {
 
   return (
     <div className="app-course">
+      <Context />
       {isConditions && <Conditions />}
       {isHigherOrderFunction && (
         <React.Fragment>
