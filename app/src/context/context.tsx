@@ -1,5 +1,5 @@
 import './styles.scss';
-import { createContext, useState } from 'react';
+import { useState } from 'react';
 import { Providers } from './providers';
 import { WelcomePanel } from './welcomePanel';
 
