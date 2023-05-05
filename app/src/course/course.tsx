@@ -18,7 +18,6 @@ type NotificationProps = {
 export default function Course() {
   const { theme }: any = useContext(ThemeContext);
   const isHigherOrderFunction = true;
-  const isFetch = true;
 
   return (
     <div className={'app-course ' + theme}>
