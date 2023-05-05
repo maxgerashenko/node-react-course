@@ -1,12 +1,16 @@
 import { useContext } from 'react';
 import { Greeting } from './greeting';
 import { LoginForm } from './loginForm';
-import { Panel } from './panel';
+import { Panel } from '../../panel';
 import { CurrentUserContext } from './contexts';
 import { Button } from './button';
 
 export function WelcomePanel({ children }: any) {
-  const { currentUser, setCurrentUser } = useContext<any>(CurrentUserContext);
+  const currentUserContext = useContext<CurrentUserContext | null>(
+    CurrentUserContext
+  );
+  if (!currentUserContext) return <></>;
+  const { currentUser, setCurrentUser } = currentUserContext;
 
   const onClick = () => {
     setCurrentUser(null);

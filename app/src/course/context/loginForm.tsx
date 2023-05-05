@@ -9,22 +9,26 @@ export function LoginForm() {
   const canLogin = firstName !== '' && lastName !== '';
   return (
     <>
-      <label>
-        First name{': '}
-        <input
-          required
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-        />
-      </label>
-      <label>
-        Last name{': '}
-        <input
-          required
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-        />
-      </label>
+      <div>
+        <label>
+          First name{': '}
+          <input
+            required
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Last name{': '}
+          <input
+            required
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+        </label>
+      </div>
       <Button
         disabled={!canLogin}
         onClick={() => {

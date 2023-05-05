@@ -1,5 +1,5 @@
 import { Button } from './button';
-import { Panel } from './panel';
+import { Panel } from '../../panel';
 
 export function Form() {
   return (

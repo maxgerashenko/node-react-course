@@ -4,12 +4,11 @@ import TaskList from './taskList';
 
 export function Tasks() {
   return (
-    <>
-      <h3>Context Reducer</h3>
+    <p>
       <TasksProvider>
         <AddTask />
         <TaskList />
       </TasksProvider>
-    </>
+    </p>
   );
 }
