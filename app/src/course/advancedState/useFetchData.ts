@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
+import { StoriesDispatch } from '../advancedState/context';
 import { initialStories, Story } from '../advancedState/data';
-import { StoriesDispatch } from '../advancedState/storiesProvider';
 
 export interface GetAsyncStoriesResponse {
   data: {

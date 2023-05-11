@@ -1,12 +1,12 @@
 import { useContext } from 'react';
+import { StoriesContext } from './context';
 import { Story } from '../advancedState/data';
 import { InputWithLabel } from '../advancedState/inputWithLabel';
 import { List } from '../advancedState/list';
 import { useFetchData } from '../advancedState/useFetchData';
 import { useLocalStorageState } from '../advancedState/useLocalStorageState';
-import { StoriesContext, StoriesProvider } from './storiesProvider';
 
-export function AdvancedState() {
+export function AdvancedStateInner() {
   const [searchTerm, setSearchTerm] = useLocalStorageState('search', 'React');
   const storiesContext = useContext(StoriesContext);
   if (!storiesContext) {
