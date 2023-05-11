@@ -1,55 +1,16 @@
-import { useContext, useEffect, useState } from 'react';
-import { initialStories, Story } from '../advancedState/data';
+import { useContext } from 'react';
+import { Story } from '../advancedState/data';
 import { InputWithLabel } from '../advancedState/inputWithLabel';
 import { List } from '../advancedState/list';
+import { useFetchData } from '../advancedState/useFetchData';
+import { useLocalStorageState } from '../advancedState/useLocalStorageState';
 import { StoriesContext, StoriesProvider } from './storiesProvider';
 
-export interface GetAsyncStoriesResponse {
-  data: {
-    stories: Story[];
-  };
-}
-const getAsyncStories = () =>
-  new Promise<GetAsyncStoriesResponse>((resolve) =>
-    setTimeout(() => resolve({ data: { stories: initialStories } }), 2000)
-  );
-
-const useSemiPersistentState = (key: any, initialState: any) => {
-  const [value, setValue] = useState(localStorage.getItem(key) || initialState);
-
-  useEffect(() => {
-    localStorage.setItem(key, value);
-  }, [value, key]);
-
-  return [value, setValue];
-};
-
 export function AdvancedState() {
-  const [searchTerm, setSearchTerm] = useSemiPersistentState('search', 'React');
+  const [searchTerm, setSearchTerm] = useLocalStorageState('search', 'React');
   const { stories, dispatchStories } = useContext(StoriesContext);
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-
-  useEffect(() => {
-    if (searchTerm == null || searchTerm === '') return;
-    setIsLoading(true);
-    setIsError(false);
-    const fetchData = async () => {
-      try {
-        const result = await getAsyncStories();
-        dispatchStories({
-          type: 'SET_STORIES',
-          payload: result.data.stories,
-        });
-        setIsLoading(false);
-      } catch (error) {
-        setIsError(true);
-      }
-    };
-
-    fetchData();
-  }, [searchTerm]);
+  const { isLoading, isError } = useFetchData(searchTerm, dispatchStories);
 
   const handleRemoveStory = (item: Story) => {
     dispatchStories({

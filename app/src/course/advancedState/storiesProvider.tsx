@@ -6,9 +6,10 @@ export type STORYACTIONS =
   | { type: 'SET_STORIES'; payload: Story[] }
   | { type: 'REMOVE_STORY'; payload: Story };
 
+export type StoriesDispatch = Dispatch<STORYACTIONS>;
 export interface StoriesContextInterface {
   stories: Story[];
-  dispatchStories: Dispatch<STORYACTIONS>;
+  dispatchStories: StoriesDispatch;
 }
 export const StoriesContext = createContext<StoriesContextInterface>({
   stories: [],
