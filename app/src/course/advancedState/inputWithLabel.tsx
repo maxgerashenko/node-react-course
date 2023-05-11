@@ -1,11 +1,11 @@
-import { InputWithLabelInterface } from 'my-ts-types';
 import { useEffect, useRef } from 'react';
+import { InputWithLabelInterface } from './interfaces';
 
 export function InputWithLabel({
   id,
   value,
-  type = 'text',
   onInputChange,
+  type,
   focusOnInit,
   children,
 }: InputWithLabelInterface) {

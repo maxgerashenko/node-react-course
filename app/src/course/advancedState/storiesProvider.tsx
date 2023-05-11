@@ -1,15 +1,14 @@
-import { Dispatch, ReactNode, ReducerAction, useReducer } from 'react';
-import { createContext } from 'vm';
+import { Dispatch, ReactNode, useReducer, createContext } from 'react';
 import { Story } from '../advancedState/data';
 import { storiesReducer } from '../advancedState/storiesReducer';
 
-export type ACTIONTYPE =
+export type STORYACTIONS =
   | { type: 'SET_STORIES'; payload: Story[] }
   | { type: 'REMOVE_STORY'; payload: Story };
 
 export interface StoriesContextInterface {
   stories: Story[];
-  dispatchStories: Dispatch<ReducerAction<ACTIONTYPE>>;
+  dispatchStories: Dispatch<STORYACTIONS>;
 }
 export const StoriesContext = createContext<StoriesContextInterface | null>(
   null
@@ -23,7 +22,7 @@ function StoriesProvider({ children }: Props) {
 
   return (
     <StoriesContext.Provider value={{ stories, dispatchStories }}>
-      {{ children }}
+      {children}
     </StoriesContext.Provider>
   );
 }

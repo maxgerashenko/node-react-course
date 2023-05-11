@@ -1,11 +1,8 @@
-import { useContext, useEffect, useReducer, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { initialStories, Story } from '../advancedState/data';
 import { InputWithLabel } from '../advancedState/inputWithLabel';
 import { List } from '../advancedState/list';
-import {
-  StoriesContext,
-  StoriesContextInterface,
-} from '../advancedState/storiesProvider';
+import { StoriesContext } from '../advancedState/storiesProvider';
 import { storiesReducer } from '../advancedState/storiesReducer';
 
 export interface GetAsyncStoriesResponse {
@@ -30,8 +27,7 @@ const useSemiPersistentState = (key: any, initialState: any) => {
 
 export function AdvancedState() {
   const [searchTerm, setSearchTerm] = useSemiPersistentState('search', 'React');
-  const { stories, dispatchStories } =
-    useContext<StoriesContextInterface>(StoriesContext);
+  const { stories, dispatchStories } = useContext(StoriesContext)!;
 
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -72,6 +68,7 @@ export function AdvancedState() {
       <h1>My Hacker Stories</h1>
 
       <InputWithLabel
+        type="text"
         id="search"
         value={searchTerm}
         focusOnInit

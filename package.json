@@ -2,13 +2,15 @@
   "name": "node-starter",
   "version": "0.0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd app && npm start"
   },
   "dependencies": {
     "dts-gen": "^0.6.1",
     "npx": "^10.2.2"
   },
   "devDependencies": {
+    "eslint-plugin-unused-imports": "^2.0.0",
     "sass": "^1.62.0"
   }
 }
