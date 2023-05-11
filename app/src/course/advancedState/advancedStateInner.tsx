@@ -9,13 +9,11 @@ import { useLocalStorageState } from '../advancedState/useLocalStorageState';
 export function AdvancedStateInner() {
   const [searchTerm, setSearchTerm] = useLocalStorageState('search', 'React');
   const storiesContext = useContext(StoriesContext);
+  alert('storiesContext' + JSON.stringify(storiesContext));
   if (!storiesContext) {
-    alert(storiesContext);
     return null;
   }
   const { stories, dispatchStories }: any = {};
-
-  alert(dispatchStories);
 
   const { isLoading, isError } = useFetchData(searchTerm, dispatchStories);
 
