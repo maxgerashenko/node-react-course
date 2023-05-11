@@ -3,7 +3,6 @@ import { initialStories, Story } from '../advancedState/data';
 import { InputWithLabel } from '../advancedState/inputWithLabel';
 import { List } from '../advancedState/list';
 import { StoriesContext } from '../advancedState/storiesProvider';
-import { storiesReducer } from '../advancedState/storiesReducer';
 
 export interface GetAsyncStoriesResponse {
   data: {

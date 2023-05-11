@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { useTasks, useTasksDispatch } from './contexts';
 
 export default function TaskList() {

@@ -42,7 +42,7 @@ export default function Conditions() {
       <div>
         <ul>
           {users.map((user) => (
-            <li> {user.name} </li>
+            <li key={user.name}> {user.name} </li>
           ))}
         </ul>
       </div>
