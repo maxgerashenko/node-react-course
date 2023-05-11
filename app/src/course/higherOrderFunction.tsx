@@ -9,7 +9,7 @@ type CustomEvent<T> = Event & {
 
 const doFilter = (query: string) => (user: User) => query === user.name;
 
-export class HigherOrderFunction extends Component<{}, { query: string }> {
+export class HigherOrderFunction extends Component<object, { query: string }> {
   constructor(props: any) {
     super(props);
 
@@ -31,7 +31,7 @@ export class HigherOrderFunction extends Component<{}, { query: string }> {
         <input placeholder="Enter Robin" type="text" onChange={this.onChange} />
         <ul>
           {users.filter(doFilter(this.state.query)).map((myuser) => (
-            <li>{myuser.name}</li>
+            <li key={myuser.name}>{myuser.name}</li>
           ))}
         </ul>
       </div>

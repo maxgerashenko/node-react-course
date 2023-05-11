@@ -4,7 +4,10 @@ import { Component } from 'react';
 const API = 'https://hn.algolia.com/api/v1/search?query=';
 const DEFAULT_QUERY = 'redux';
 
-export default class FetchComponent extends Component<{}, { title: string }> {
+export default class FetchComponent extends Component<
+  object,
+  { title: string }
+> {
   constructor(props: any) {
     super(props);
     this.state = {
