@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import { StoriesContext } from './context';
 import { Story } from '../advancedState/data';
 import { InputWithLabel } from '../advancedState/inputWithLabel';
@@ -14,8 +14,15 @@ export function AdvancedStateInner() {
     return null;
   }
   const { stories, dispatchStories }: any = {};
+  if (!dispatchStories) return null;
 
-  const { isLoading, isError } = useFetchData(searchTerm, dispatchStories);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+
+  useCallback(
+    () => useFetchData(searchTerm, dispatchStories, setIsLoading, setIsError),
+    [searchTerm]
+  );
 
   const handleRemoveStory = (item: Story) => {
     dispatchStories({
