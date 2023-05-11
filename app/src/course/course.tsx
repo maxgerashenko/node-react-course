@@ -8,7 +8,7 @@ import { PropsToList } from './propsToList';
 import { StateToComponent } from './stateToComponent';
 import CheckToShow from '../checkToShow';
 import { ThemeContext } from '../contexts';
-import { AdvancedState } from './advancedState/advancedState';
+import { AdvancdedSate } from './advancedState/advancdedSate';
 
 type Status = 'info' | 'warning' | 'error';
 type NotificationProps = {
@@ -23,7 +23,7 @@ export default function Course() {
   return (
     <div className={'app-course ' + theme}>
       <CheckToShow title="Advanced State">
-        <AdvancedState />
+        <AdvancdedSate />
       </CheckToShow>
       <CheckToShow title="Context + Reducer">
         <Tasks />

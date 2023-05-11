@@ -2,7 +2,7 @@ import { AdvancedStateInner } from '../advancedState/advancedStateInner';
 import { StoriesProvider } from '../advancedState/storiesProvider';
 
 export function AdvancdedSate() {
-  StoriesProvider;
+  const x = StoriesProvider;
   return (
     <StoriesProvider>
       <AdvancedStateInner />
