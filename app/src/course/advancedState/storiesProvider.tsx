@@ -10,14 +10,17 @@ export interface StoriesContextInterface {
   stories: Story[];
   dispatchStories: Dispatch<STORYACTIONS>;
 }
-export const StoriesContext = createContext<StoriesContextInterface | null>(
-  null
-);
+export const StoriesContext = createContext<StoriesContextInterface>({
+  stories: [],
+  dispatchStories: () => {
+    throw new Error('dispatchStories not implemented');
+  },
+});
 
 interface Props {
   children?: ReactNode;
 }
-function StoriesProvider({ children }: Props) {
+export function StoriesProvider({ children }: Props) {
   const [stories, dispatchStories] = useReducer(storiesReducer, []);
 
   return (

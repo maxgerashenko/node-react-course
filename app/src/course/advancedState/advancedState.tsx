@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { initialStories, Story } from '../advancedState/data';
 import { InputWithLabel } from '../advancedState/inputWithLabel';
 import { List } from '../advancedState/list';
-import { StoriesContext } from '../advancedState/storiesProvider';
+import { StoriesContext, StoriesProvider } from './storiesProvider';
 
 export interface GetAsyncStoriesResponse {
   data: {
@@ -26,13 +26,15 @@ const useSemiPersistentState = (key: any, initialState: any) => {
 
 export function AdvancedState() {
   const [searchTerm, setSearchTerm] = useSemiPersistentState('search', 'React');
-  const { stories, dispatchStories } = useContext(StoriesContext)!;
+  const { stories, dispatchStories } = useContext(StoriesContext);
 
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
+    if (searchTerm == null || searchTerm === '') return;
     setIsLoading(true);
+    setIsError(false);
     const fetchData = async () => {
       try {
         const result = await getAsyncStories();
@@ -60,36 +62,38 @@ export function AdvancedState() {
     setSearchTerm(value);
   };
 
-  const searchedStories: Story[] = stories;
+  const searchedStories: Story[] = stories!;
 
   return (
-    <div>
-      <h1>My Hacker Stories</h1>
+    <StoriesProvider>
+      <div>
+        <h1>My Hacker Stories</h1>
 
-      <InputWithLabel
-        type="text"
-        id="search"
-        value={searchTerm}
-        focusOnInit
-        onInputChange={handleSearch}
-      >
-        <strong>Search:</strong>
-      </InputWithLabel>
+        <InputWithLabel
+          type="text"
+          id="search"
+          value={searchTerm}
+          focusOnInit
+          onInputChange={handleSearch}
+        >
+          <strong>Search:</strong>
+        </InputWithLabel>
 
-      <hr />
+        <hr />
 
-      {isError && <p>Something went wrong ...</p>}
-
-      {isLoading ? (
-        <p>Loading ...</p>
-      ) : (
-        <List
-          list={searchedStories.filter((story: any) =>
-            story.title.toLowerCase().includes(searchTerm.toLowerCase())
-          )}
-          onRemoveItem={handleRemoveStory}
-        />
-      )}
-    </div>
+        {isError ? (
+          <p>Something went wrong ...</p>
+        ) : isLoading ? (
+          <p>Loading ...</p>
+        ) : (
+          <List
+            list={searchedStories.filter((story: any) =>
+              story.title.toLowerCase().includes(searchTerm.toLowerCase())
+            )}
+            onRemoveItem={handleRemoveStory}
+          />
+        )}
+      </div>
+    </StoriesProvider>
   );
 }
