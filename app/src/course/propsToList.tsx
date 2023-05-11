@@ -1,7 +1,3 @@
-//
-//
-//
-
 import { ChangeEvent } from 'react';
 
 interface Article {

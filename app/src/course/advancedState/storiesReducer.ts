@@ -1,4 +1,5 @@
 export const storiesReducer = (state: any, action: any) => {
+  alert(action.type);
   switch (action.type) {
     case 'SET_STORIES':
       return action.payload;

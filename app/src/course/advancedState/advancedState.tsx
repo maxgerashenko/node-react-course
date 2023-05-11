@@ -10,6 +10,8 @@ export function AdvancedState() {
   const [searchTerm, setSearchTerm] = useLocalStorageState('search', 'React');
   const { stories, dispatchStories } = useContext(StoriesContext);
 
+  alert(dispatchStories);
+
   const { isLoading, isError } = useFetchData(searchTerm, dispatchStories);
 
   const handleRemoveStory = (item: Story) => {

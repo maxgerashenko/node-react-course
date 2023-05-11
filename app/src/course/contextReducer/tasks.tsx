@@ -4,11 +4,11 @@ import TaskList from './taskList';
 
 export function Tasks() {
   return (
-    <p>
+    <div>
       <TasksProvider>
         <AddTask />
         <TaskList />
       </TasksProvider>
-    </p>
+    </div>
   );
 }

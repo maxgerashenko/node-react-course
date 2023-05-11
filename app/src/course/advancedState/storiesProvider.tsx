@@ -23,7 +23,6 @@ interface Props {
 }
 export function StoriesProvider({ children }: Props) {
   const [stories, dispatchStories] = useReducer(storiesReducer, []);
-
   return (
     <StoriesContext.Provider value={{ stories, dispatchStories }}>
       {children}
