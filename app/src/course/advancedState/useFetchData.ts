@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { StoriesDispatch } from '../advancedState/context';
+import { StoriesDispatcher } from '../advancedState/context';
 import { initialStories, Story } from '../advancedState/data';
 
 export interface GetAsyncStoriesResponse {
@@ -14,7 +14,7 @@ const getAsyncStories = () =>
 
 export const useFetchData = (
   searchTerm: string,
-  dispatchStories: StoriesDispatch,
+  dispatch: StoriesDispatcher,
   setIsLoading: (val: boolean) => void,
   setIsError: (val: boolean) => void
 ) => {
@@ -25,7 +25,7 @@ export const useFetchData = (
     const fetchData = async () => {
       try {
         const result = await getAsyncStories();
-        dispatchStories({
+        dispatch({
           type: 'SET_STORIES',
           payload: result.data.stories,
         });
