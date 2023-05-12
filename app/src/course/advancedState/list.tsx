@@ -10,7 +10,7 @@ export function Item({
   onRemoveItem,
 }: Story & { onRemoveItem: (item: Story) => void }) {
   return (
-    <div>
+    <div className="list-item">
       {' '}
       <span>
         <a href={url}>{title}</a>

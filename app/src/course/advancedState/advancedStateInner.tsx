@@ -58,12 +58,7 @@ export function AdvancedStateInner() {
   return (
     <div>
       {search}
-      <List
-        list={stories.filter((story: any) =>
-          story.title.toLowerCase().includes(searchTerm.toLowerCase())
-        )}
-        onRemoveItem={handleRemoveStory}
-      />
+      <List list={stories} onRemoveItem={handleRemoveStory} />
     </div>
   );
 }

@@ -1,47 +1,52 @@
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import { StoriesDispatcher } from '../advancedState/context';
-import { Story, initialStories } from './data';
+import { useDebounce } from '../advancedState/useDebounce';
+import { Story } from './data';
 
 export interface GetAsyncStoriesResponse {
-  data: {
-    stories: Story[];
-  };
+  hits: Story[];
 }
-const getAsyncStories = () =>
-  new Promise<GetAsyncStoriesResponse>((resolve) =>
-    setTimeout(() => resolve({ data: { stories: initialStories } }), 2000)
-  );
+
+function storyRequest(searchTerm: string): Promise<GetAsyncStoriesResponse> {
+  return fetch(process.env.REACT_APP_API_ENDPOINT! + searchTerm)
+    .then((response) => response.json())
+    .catch((error) => {
+      new Error(error);
+    });
+}
 
 export const useFetchData = (
   searchTerm: string,
   dispatch: StoriesDispatcher
 ) => {
-  const fetch = useCallback(() => {
+  const debounced = useDebounce(async () => {
     if (searchTerm == null || searchTerm === '') {
-      return;
+      return [];
     }
 
-    const fetchData = async () => {
+    dispatch({
+      type: 'FETCH_INIT',
+    });
+    try {
+      const result = await storyRequest(searchTerm);
       dispatch({
-        type: 'FETCH_INIT',
+        type: 'FETCH_SUCCESS',
+        payload: result.hits,
       });
-      try {
-        const result = await getAsyncStories();
-        dispatch({
-          type: 'FETCH_SUCCESS',
-          payload: result.data.stories,
-        });
-      } catch (error) {
-        dispatch({
-          type: 'FETCH_FAILURE',
-        });
-      }
-    };
-
-    fetchData();
-  }, [searchTerm]);
+    } catch (error) {
+      dispatch({
+        type: 'FETCH_FAILURE',
+      });
+    }
+  }, []);
 
   useEffect(() => {
-    fetch();
-  }, [fetch]);
+    let ignore = false;
+
+    !ignore && debounced();
+
+    return () => {
+      ignore = true;
+    };
+  }, [searchTerm]);
 };
