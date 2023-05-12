@@ -9,6 +9,8 @@ interface Props {
 export function StoriesProvider({ children }: Props) {
   const [state, dispatch] = useReducer<storiesReducerType>(storiesReducer, {
     stories: initialStories,
+    isLoading: false,
+    isError: false,
   });
 
   return (

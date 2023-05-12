@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { StoriesDispatcher } from '../advancedState/context';
-import { initialStories, Story } from '../advancedState/data';
+import { Story, initialStories } from '../advancedState/data';
 
 export interface GetAsyncStoriesResponse {
   data: {
@@ -16,28 +16,26 @@ export const useFetchData = (
   searchTerm: string,
   dispatch: StoriesDispatcher
 ) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-
   useEffect(() => {
     if (searchTerm == null || searchTerm === '') return;
-    setIsLoading(true);
-    setIsError(false);
+
     const fetchData = async () => {
+      dispatch({
+        type: 'FETCH_INIT',
+      });
       try {
         const result = await getAsyncStories();
         dispatch({
-          type: 'SET_STORIES',
+          type: 'FETCH_SUCCESS',
           payload: result.data.stories,
         });
-        setIsLoading(false);
       } catch (error) {
-        setIsError(true);
+        dispatch({
+          type: 'FETCH_FAILURE',
+        });
       }
     };
 
     fetchData();
   }, [searchTerm]);
-
-  return { isLoading, isError };
 };

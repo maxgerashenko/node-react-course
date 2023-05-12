@@ -9,10 +9,11 @@ import { useLocalStorageState } from '../advancedState/useLocalStorageState';
 export function AdvancedStateInner() {
   const [searchTerm, setSearchTerm] = useLocalStorageState('search', 'React');
   const context = useContext(StoriesContext);
-  if (!context) return <></>;
+  if (!context) return <>Error: No context provided</>;
   const { state, dispatch } = context;
+  const { stories, isLoading, isError } = state;
 
-  const { isLoading, isError } = useFetchData(searchTerm, dispatch);
+  useFetchData(searchTerm, dispatch);
 
   const handleRemoveStory = (item: Story) => {
     dispatch({
@@ -24,8 +25,6 @@ export function AdvancedStateInner() {
   const handleSearch = (value: string) => {
     setSearchTerm(value);
   };
-
-  const searchedStories: Story[] = state.stories!;
 
   return (
     <div>
@@ -49,7 +48,7 @@ export function AdvancedStateInner() {
         <p>Loading ...</p>
       ) : (
         <List
-          list={searchedStories.filter((story: any) =>
+          list={stories.filter((story: any) =>
             story.title.toLowerCase().includes(searchTerm.toLowerCase())
           )}
           onRemoveItem={handleRemoveStory}
