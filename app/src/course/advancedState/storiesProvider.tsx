@@ -1,13 +1,15 @@
 import { ReactNode, useReducer } from 'react';
-import { StoriesContext, StoriesContexTypeArray } from './context';
+import { StoriesContext } from './context';
 import { initialStories } from './data';
-import { storiesReducer } from './storiesReducer';
+import { storiesReducer, storiesReducerType } from './storiesReducer';
 
 interface Props {
   children?: ReactNode;
 }
 export function StoriesProvider({ children }: Props) {
-  const [state, dispatch]: StoriesContexTypeArray = useReducer(storiesReducer);
+  const [state, dispatch] = useReducer<storiesReducerType>(storiesReducer, {
+    stories: initialStories,
+  });
 
   return (
     <StoriesContext.Provider value={{ state, dispatch }}>

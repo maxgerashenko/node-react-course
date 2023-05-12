@@ -38,6 +38,9 @@
 .app-course {
   &.dark {
     background-color: #14181e;
+    a {
+      color: #df00ff;
+    }
   }
   &.light {
     background-color: #d3d3d3;

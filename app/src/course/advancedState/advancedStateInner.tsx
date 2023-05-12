@@ -1,4 +1,4 @@
-import { useCallback, useContext, useState } from 'react';
+import { useContext } from 'react';
 import { StoriesContext } from './context';
 import { Story } from '../advancedState/data';
 import { InputWithLabel } from '../advancedState/inputWithLabel';
@@ -8,24 +8,14 @@ import { useLocalStorageState } from '../advancedState/useLocalStorageState';
 
 export function AdvancedStateInner() {
   const [searchTerm, setSearchTerm] = useLocalStorageState('search', 'React');
-  const storiesContext = useContext(StoriesContext);
-  alert('storiesContext' + JSON.stringify(storiesContext));
-  if (!storiesContext) {
-    return null;
-  }
-  const { stories, dispatchStories }: any = {};
-  if (!dispatchStories) return null;
+  const context = useContext(StoriesContext);
+  if (!context) return <></>;
+  const { state, dispatch } = context;
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-
-  useCallback(
-    () => useFetchData(searchTerm, dispatchStories, setIsLoading, setIsError),
-    [searchTerm]
-  );
+  const { isLoading, isError } = useFetchData(searchTerm, dispatch);
 
   const handleRemoveStory = (item: Story) => {
-    dispatchStories({
+    dispatch({
       type: 'REMOVE_STORY',
       payload: item,
     });
@@ -35,7 +25,7 @@ export function AdvancedStateInner() {
     setSearchTerm(value);
   };
 
-  const searchedStories: Story[] = stories!;
+  const searchedStories: Story[] = state.stories!;
 
   return (
     <div>

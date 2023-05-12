@@ -6,15 +6,21 @@ export type StoriesState = { stories: Story[] };
 export type StoryActions =
   | { type: 'SET_STORIES'; payload: Story[] }
   | { type: 'REMOVE_STORY'; payload: Story };
-
+// Reducer Type
+export type storiesReducerType = (
+  state: StoriesState,
+  action: StoryActions
+) => StoriesState;
 export const storiesReducer = (state: StoriesState, action: StoryActions) => {
   switch (action.type) {
     case 'SET_STORIES':
-      return action.payload;
+      return { stories: action.payload };
     case 'REMOVE_STORY':
-      return state.stories.filter(
-        (story: any) => action.payload.objectID !== story.objectID
-      );
+      return {
+        stories: state.stories.filter(
+          (story: any) => action.payload.objectID !== story.objectID
+        ),
+      };
     default:
       throw new Error();
   }

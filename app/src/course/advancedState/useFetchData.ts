@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { StoriesDispatcher } from '../advancedState/context';
 import { initialStories, Story } from '../advancedState/data';
 
@@ -14,10 +14,11 @@ const getAsyncStories = () =>
 
 export const useFetchData = (
   searchTerm: string,
-  dispatch: StoriesDispatcher,
-  setIsLoading: (val: boolean) => void,
-  setIsError: (val: boolean) => void
+  dispatch: StoriesDispatcher
 ) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+
   useEffect(() => {
     if (searchTerm == null || searchTerm === '') return;
     setIsLoading(true);
@@ -37,4 +38,6 @@ export const useFetchData = (
 
     fetchData();
   }, [searchTerm]);
+
+  return { isLoading, isError };
 };
