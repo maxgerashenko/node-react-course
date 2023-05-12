@@ -9,7 +9,9 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:react/jsx-runtime",
     "plugin:react/recommended",
-    "plugin:react-redux/recommended"
+    "plugin:react-redux/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"
   ],
   "overrides": [],
   "parser": "@typescript-eslint/parser",
@@ -21,6 +23,12 @@
     }
   },
   "settings": {
+    // "import/resolver": {
+    //   "node": {
+    //     "extensions": [".js", ".jsx", ".ts", ".tsx"]
+    //   }
+    // },
+
     "react": {
       "version": "detect"
     },
@@ -35,25 +43,24 @@
     "react-hooks",
     "react-redux",
     "this",
-    "json-format"
+    "json-format",
+    "import"
   ],
   "rules": {
     "import/order": [
       "error",
       {
-        "groups": [
-          "index",
-          "sibling",
-          "parent",
-          "internal",
-          "external",
-          "builtin",
-          "object",
-          "type"
-        ]
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "builtin",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"]
       }
     ],
-    "comma-dangle": ["error", "never"],
+    "comma-dangle": ["warn", "always"],
     "react-redux/connect-prefer-named-arguments": 2,
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",

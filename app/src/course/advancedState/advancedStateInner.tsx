@@ -1,17 +1,17 @@
-import { useContext } from "react";
-import { StoriesContext } from "./context";
-import { Story } from "../advancedState/data";
-import { InputWithLabel } from "../advancedState/inputWithLabel";
-import { List } from "../advancedState/list";
-import { useFetchData } from "../advancedState/useFetchData";
-import { useLocalStorageState } from "../advancedState/useLocalStorageState";
+import { useContext } from 'react';
+import { StoriesContext } from './context';
+import { Story } from '../advancedState/data';
+import { InputWithLabel } from '../advancedState/inputWithLabel';
+import { List } from '../advancedState/list';
+import { useFetchData } from '../advancedState/useFetchData';
+import { useLocalStorageState } from '../advancedState/useLocalStorageState';
 
 export function AdvancedStateInner() {
-  const [searchTerm, setSearchTerm] = useLocalStorageState("search", "React"),
+  const [searchTerm, setSearchTerm] = useLocalStorageState('search', 'React'),
     context = useContext(StoriesContext);
 
   if (!context) {
-    throw new Error("StoriesContext not provided");
+    throw new Error('StoriesContext not provided');
   }
 
   const { state, dispatch } = context,
@@ -21,8 +21,8 @@ export function AdvancedStateInner() {
 
   const handleRemoveStory = (item: Story) => {
       dispatch({
-        type: "REMOVE_STORY",
-        payload: item
+        type: 'REMOVE_STORY',
+        payload: item,
       });
     },
     handleSearch = (value: string) => {

@@ -1,4 +1,4 @@
-import { Story } from "../advancedState/data";
+import { Story, } from "../advancedState/data";
 
 // State
 export type StoriesState = {
@@ -19,34 +19,34 @@ export type storiesReducerType = (
   action: StoryActions
 ) => StoriesState;
 // Reducer
-export const storiesReducer = (state: StoriesState, action: StoryActions) => {
+export const storiesReducer = (state: StoriesState, action: StoryActions,) => {
   switch (action.type) {
     case "FETCH_INIT":
       return {
         ...state,
         isLoading: true,
-        isError: false
+        isError: false,
       };
     case "FETCH_SUCCESS":
       return {
         stories: action.payload,
         isLoading: false,
-        isError: false
+        isError: false,
       };
     case "FETCH_FAILURE":
       return {
         ...state,
         isLoading: false,
-        isError: true
+        isError: true,
       };
     case "SET_STORIES":
-      return { ...state, stories: action.payload };
+      return { ...state, stories: action.payload, };
     case "REMOVE_STORY":
       return {
         ...state,
         stories: state.stories.filter(
-          (story: any) => action.payload.objectID !== story.objectID
-        )
+          (story: any,) => action.payload.objectID !== story.objectID,
+        ),
       };
     default:
       throw new Error();

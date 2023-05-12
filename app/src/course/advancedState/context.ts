@@ -1,6 +1,6 @@
-import { Dispatch, createContext } from 'react';
+import { Dispatch, createContext, } from "react";
 
-import { StoriesState, StoryActions } from '../advancedState/storiesReducer';
+import { StoriesState, StoryActions, } from "../advancedState/storiesReducer";
 
 export type StoriesDispatcher = Dispatch<StoryActions>;
 // Content Value
@@ -12,4 +12,5 @@ export type StoriesContexTypeArray = [
   state: StoriesState,
   dispatch: StoriesDispatcher
 ];
-export const StoriesContext = createContext<StoriesContextType | null>(null);
+
+export const StoriesContext = createContext<StoriesContextType | null>(null,);

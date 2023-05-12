@@ -14,7 +14,7 @@ export const initialStories = [
         "author": "Jordan Walke",
         "num_comments": 3,
         "points": 4,
-        "objectID": 0
+        "objectID": 0,
     },
     {
         "title": "Redux",
@@ -22,6 +22,6 @@ export const initialStories = [
         "author": "Dan Abramov, Andrew Clark",
         "num_comments": 2,
         "points": 5,
-        "objectID": 1
-    }
+        "objectID": 1,
+    },
 ];
