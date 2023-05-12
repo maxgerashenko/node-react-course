@@ -2,18 +2,24 @@ import { useEffect } from 'react';
 import { StoriesDispatcher } from '../advancedState/context';
 import { useDebounce } from '../advancedState/useDebounce';
 import { Story } from './data';
+import axios from 'axios';
 
 export interface GetAsyncStoriesResponse {
   hits: Story[];
 }
 
-function storyRequest(searchTerm: string): Promise<GetAsyncStoriesResponse> {
-  return fetch(process.env.REACT_APP_API_ENDPOINT! + searchTerm)
-    .then((response) => response.json())
-    .catch((error) => {
-      new Error(error);
-    });
-}
+const storyRequest = async (
+  searchTerm: string
+): Promise<GetAsyncStoriesResponse> => {
+  try {
+    const response = await axios.get<GetAsyncStoriesResponse>(
+      process.env.REACT_APP_API_ENDPOINT! + searchTerm
+    );
+    return response.data;
+  } catch (error: unknown) {
+    throw error;
+  }
+};
 
 export const useFetchData = (
   searchTerm: string,

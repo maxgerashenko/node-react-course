@@ -69,6 +69,7 @@
     "react/jsx-uses-vars": "error",
     "react/react-in-jsx-scope": "off",
     "no-unused-vars": "off",
+    "no-useless-catch": "warn",
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": [
       "warn",
