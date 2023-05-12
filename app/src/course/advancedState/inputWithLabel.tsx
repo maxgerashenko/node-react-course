@@ -14,7 +14,7 @@ export function InputWithLabel({
   useEffect(() => {
     onInputChange('');
     if (focusOnInit) inputRef.current.focus();
-  }, [focusOnInit]);
+  }, []);
 
   return (
     <>
