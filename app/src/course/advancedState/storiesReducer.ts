@@ -11,6 +11,7 @@ export type storiesReducerType = (
   state: StoriesState,
   action: StoryActions
 ) => StoriesState;
+// Reducer
 export const storiesReducer = (state: StoriesState, action: StoryActions) => {
   switch (action.type) {
     case 'SET_STORIES':
