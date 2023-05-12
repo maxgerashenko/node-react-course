@@ -38,6 +38,21 @@
     "json-format"
   ],
   "rules": {
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "index",
+          "sibling",
+          "parent",
+          "internal",
+          "external",
+          "builtin",
+          "object",
+          "type"
+        ]
+      }
+    ],
     "comma-dangle": ["error", "never"],
     "react-redux/connect-prefer-named-arguments": 2,
     "react-hooks/rules-of-hooks": "error",

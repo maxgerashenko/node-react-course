@@ -1,5 +1,6 @@
-import {Dispatch, createContext} from "react";
-import {StoriesState, StoryActions} from "../advancedState/storiesReducer";
+import { Dispatch, createContext } from 'react';
+
+import { StoriesState, StoryActions } from '../advancedState/storiesReducer';
 
 export type StoriesDispatcher = Dispatch<StoryActions>;
 // Content Value
