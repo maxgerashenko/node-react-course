@@ -1,34 +1,58 @@
-import { useEffect, useState } from 'react';
-import { ThemeContext } from './contexts';
+import {useEffect, useState} from "react";
+import {ThemeContext} from "./contexts";
 
-function useOnThemeChange(setTheme: (value: string) => void) {
-  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-  useEffect(() => {
-    function onThemeChange(isDarkMode: boolean) {
-      setTheme(isDarkMode ? 'dark' : 'light');
-    }
-    const isDarkMode = window.matchMedia(
-      '(prefers-color-scheme: dark)'
-    ).matches;
-    onThemeChange(isDarkMode);
+function useOnThemeChange (setTheme: (value: string) => void) {
 
-    const handler = (e: MediaQueryListEventInit) => {
-      onThemeChange(!!e.matches);
-    };
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    useEffect(
+        () => {
 
-    mediaQuery.addEventListener('change', handler);
-    return () => mediaQuery.removeEventListener('change', handler);
-  }, []);
+            function onThemeChange (isDarkMode: boolean) {
+
+                setTheme(isDarkMode
+                    ? "dark"
+                    : "light");
+
+            }
+            const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            onThemeChange(isDarkMode);
+
+            const handler = (e: MediaQueryListEventInit) => {
+
+                onThemeChange(Boolean(e.matches));
+
+            };
+
+            mediaQuery.addEventListener(
+                "change",
+                handler
+            );
+            return () => mediaQuery.removeEventListener(
+                "change",
+                handler
+            );
+
+        },
+        []
+    );
+
 }
 
-export function ThemeProvider({ children }: any) {
-  const [theme, setTheme]: any = useState<string>('dark');
+export function ThemeProvider ({children}: any) {
 
-  useOnThemeChange(setTheme);
+    const [
+        theme,
+        setTheme]:
+any = useState<string>("dark");
 
-  return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+    useOnThemeChange(setTheme);
+
+    return (
+        <ThemeContext.Provider value={{theme,
+            setTheme}}
+        >
+            {children}
+        </ThemeContext.Provider>
+    );
+
 }

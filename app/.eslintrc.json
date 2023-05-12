@@ -5,20 +5,47 @@
   },
   "extends": [
     "eslint:recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/jsx-runtime",
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:react-redux/recommended"
   ],
   "overrides": [],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
-    "sourceType": "module"
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
-  "plugins": ["react", "@typescript-eslint", "unused-imports"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "json/sort-package-json": "standard",
+    "json/json-with-comments-files": ["**/tsconfig.json", ".vscode/**"],
+    "json/ignore-files": ["**/package-lock.json"]
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "unused-imports",
+    "react-hooks",
+    "react-redux",
+    "this",
+    "json-format"
+  ],
   "rules": {
+    "comma-dangle": ["error", "never"],
+    "react-redux/connect-prefer-named-arguments": 2,
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
     "react/react-in-jsx-scope": "off",
-    // "react/jsx-uses-react": "off",
-    "no-unused-vars": "off", // or "@typescript-eslint/no-unused-vars": "off",
+    "no-unused-vars": "off",
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": [
       "warn",
@@ -29,8 +56,9 @@
         "argsIgnorePattern": "^_"
       }
     ],
+
     "sort-imports": [
-      "error",
+      "warn",
       {
         "ignoreCase": false,
         "ignoreDeclarationSort": false,
@@ -38,6 +66,9 @@
         "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
         "allowSeparatedGroups": true
       }
-    ]
+    ],
+    "eqeqeq": "off",
+    "curly": "error",
+    "quotes": ["warn", "double"]
   }
 }

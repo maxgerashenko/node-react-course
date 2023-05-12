@@ -1,13 +1,13 @@
-import './styles.scss';
-import { WelcomePanel } from './welcomePanel';
-import { Providers } from './providers';
+import "./styles.scss";
+import {WelcomePanel} from "./welcomePanel";
+import {Providers} from "./providers";
 
-export function Context() {
-  return (
-    <>
-      <Providers>
-        <WelcomePanel />
-      </Providers>
-    </>
-  );
+export function Context () {
+
+    return (
+        <Providers>
+            <WelcomePanel />
+        </Providers>
+    );
+
 }

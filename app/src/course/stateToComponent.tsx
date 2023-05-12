@@ -1,8 +1,4 @@
-//
-//
-//
-
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState } from "react";
 
 interface Article {
   title: string;
@@ -12,25 +8,6 @@ interface Article {
   points: number;
   objectID: number;
 }
-
-const stories: Article[] = [
-  {
-    title: 'React',
-    url: 'https://reactjs.org/',
-    author: 'Jordan Walke',
-    num_comments: 3,
-    points: 4,
-    objectID: 0,
-  },
-  {
-    title: 'Redux',
-    url: 'https://redux.js.org/',
-    author: 'Dan Abramov, Andrew Clark',
-    num_comments: 2,
-    points: 5,
-    objectID: 1,
-  },
-];
 
 const List = (props: { list: Article[] }) => {
   return (
@@ -50,7 +27,25 @@ const List = (props: { list: Article[] }) => {
 };
 
 export const StateToComponent = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const stories: Article[] = [
+    {
+      title: "React",
+      url: "https://reactjs.org/",
+      author: "Jordan Walke",
+      num_comments: 3,
+      points: 4,
+      objectID: 0
+    },
+    {
+      title: "Redux",
+      url: "https://redux.js.org/",
+      author: "Dan Abramov, Andrew Clark",
+      num_comments: 2,
+      points: 5,
+      objectID: 1
+    }
+  ];
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
