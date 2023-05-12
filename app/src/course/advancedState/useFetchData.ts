@@ -1,6 +1,6 @@
-import { useEffect, } from "react";
-import { StoriesDispatcher, } from "../advancedState/context";
-import { Story, initialStories, } from "./data";
+import { useCallback, useEffect } from 'react';
+import { StoriesDispatcher } from '../advancedState/context';
+import { Story, initialStories } from './data';
 
 export interface GetAsyncStoriesResponse {
   data: {
@@ -8,36 +8,40 @@ export interface GetAsyncStoriesResponse {
   };
 }
 const getAsyncStories = () =>
-  new Promise<GetAsyncStoriesResponse>((resolve,) =>
-    setTimeout(() => resolve({ data: { stories: initialStories, }, },), 2000,),
+  new Promise<GetAsyncStoriesResponse>((resolve) =>
+    setTimeout(() => resolve({ data: { stories: initialStories } }), 2000)
   );
 
 export const useFetchData = (
   searchTerm: string,
-  dispatch: StoriesDispatcher,
+  dispatch: StoriesDispatcher
 ) => {
-  useEffect(() => {
-    if (searchTerm == null || searchTerm === "") {
+  const fetch = useCallback(() => {
+    if (searchTerm == null || searchTerm === '') {
       return;
     }
 
     const fetchData = async () => {
       dispatch({
-        type: "FETCH_INIT",
-      },);
+        type: 'FETCH_INIT',
+      });
       try {
         const result = await getAsyncStories();
         dispatch({
-          type: "FETCH_SUCCESS",
+          type: 'FETCH_SUCCESS',
           payload: result.data.stories,
-        },);
+        });
       } catch (error) {
         dispatch({
-          type: "FETCH_FAILURE",
-        },);
+          type: 'FETCH_FAILURE',
+        });
       }
     };
 
     fetchData();
-  }, [searchTerm,],);
+  }, [searchTerm]);
+
+  useEffect(() => {
+    fetch();
+  }, [fetch]);
 };
