@@ -1,21 +1,19 @@
-import "./app.scss";
-import Course from "./course/course";
-import { ThemeProvider } from "./themeProvider";
-import { DarkMode } from "./darkMode";
-import { Footer } from "./footer";
+import './app.scss';
+import Course from './course/course';
+import { ThemeProvider } from './themeProvider';
+import { DarkMode } from './darkMode';
+import { Footer } from './footer';
 
-function App() {
-  return (
-    <div className="app">
-      <ThemeProvider>
-        <DarkMode />
+const App = () => (
+  <div className="app">
+    <ThemeProvider>
+      <DarkMode />
 
-        <Course />
+      <Course />
 
-        <Footer />
-      </ThemeProvider>
-    </div>
-  );
-}
+      <Footer />
+    </ThemeProvider>
+  </div>
+);
 
 export default App;
