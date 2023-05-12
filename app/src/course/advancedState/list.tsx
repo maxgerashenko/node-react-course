@@ -10,7 +10,7 @@ export function Item({
   onRemoveItem,
 }: Story & { onRemoveItem: (item: Story) => void }) {
   return (
-    <div>
+    <>
       {' '}
       <span>
         <a href={url}>{title}</a>
@@ -29,7 +29,7 @@ export function Item({
           Dismiss{' '}
         </button>{' '}
       </span>
-    </div>
+    </>
   );
 }
 interface ListProps {
