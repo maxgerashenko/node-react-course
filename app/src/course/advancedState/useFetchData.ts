@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { StoriesDispatcher } from '../advancedState/context';
-import { useDebounce } from '../advancedState/useDebounce';
 import { Story } from './data';
 import axios from 'axios';
+import { debounce } from 'lodash';
 
 export interface GetAsyncStoriesResponse {
   hits: Story[];
@@ -23,38 +23,39 @@ const storyRequest = async (
   }
 };
 
+const fetchResults = async (
+  searchTerm: string,
+  dispatch: StoriesDispatcher
+) => {
+  if (searchTerm == null || searchTerm === '') {
+    return [];
+  }
+
+  dispatch({
+    type: 'FETCH_INIT',
+  });
+  try {
+    const result = await storyRequest(searchTerm);
+    dispatch({
+      type: 'FETCH_SUCCESS',
+      payload: result.hits,
+    });
+  } catch (error) {
+    dispatch({
+      type: 'FETCH_FAILURE',
+    });
+  }
+};
+
 export const useFetchData = (
   searchTerm: string,
   dispatch: StoriesDispatcher
 ) => {
-  const debounced = useDebounce(async () => {
-    if (searchTerm == null || searchTerm === '') {
-      return [];
-    }
-
-    dispatch({
-      type: 'FETCH_INIT',
-    });
-    try {
-      const result = await storyRequest(searchTerm);
-      dispatch({
-        type: 'FETCH_SUCCESS',
-        payload: result.hits,
-      });
-    } catch (error) {
-      dispatch({
-        type: 'FETCH_FAILURE',
-      });
-    }
-  }, [searchTerm]);
+  const debounced = debounce(() => fetchResults(searchTerm, dispatch));
 
   useEffect(() => {
-    let ignore = false;
+    if (!searchTerm || searchTerm === '') return;
 
-    !ignore && debounced();
-
-    return () => {
-      ignore = true;
-    };
+    fetchResults(searchTerm, dispatch);
   }, [searchTerm]);
 };

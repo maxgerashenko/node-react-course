@@ -48,6 +48,7 @@
     "import"
   ],
   "rules": {
+    "curly": ["error", "multi"],
     "import/order": [
       "warn",
       {
@@ -92,7 +93,6 @@
       }
     ],
     "eqeqeq": "off",
-    "curly": "error",
     "quotes": ["warn", "double"]
   }
 }
