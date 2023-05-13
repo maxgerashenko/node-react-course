@@ -1,8 +1,15 @@
-.listItem span {
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 15ch;
-  margin-bottom: 15;
+.listItem {
+  margin-bottom: 20px;
+
+  span {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 15ch;
+  }
+}
+
+.listWrapper {
+  padding: 20px;
 }

@@ -33,11 +33,20 @@ const fetchResults = async (
     type: 'FETCH_INIT',
   });
   try {
+    const startTime = Date.now();
+
     const result = await storyRequest(searchTerm);
-    dispatch({
-      type: 'FETCH_SUCCESS',
-      payload: result.hits,
-    });
+
+    const minLoadingTime = 1000; // Minimum loading time in ms
+    const elapsed = Date.now() - startTime;
+    const delay = elapsed > minLoadingTime ? 0 : minLoadingTime - elapsed;
+
+    setTimeout(() => {
+      dispatch({
+        type: 'FETCH_SUCCESS',
+        payload: result.hits,
+      });
+    }, delay);
   } catch (error) {
     dispatch({
       type: 'FETCH_FAILURE',

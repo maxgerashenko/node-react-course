@@ -50,7 +50,7 @@ export function List({ list, onRemoveItem }: ListProps): any {
   ));
 
   return (
-    <div className="list-wrapper">
+    <div className={`listWrapper ${styles.listWrapper}`}>
       <div className="list">{itemList}</div>
     </div>
   );

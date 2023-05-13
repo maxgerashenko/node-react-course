@@ -29,3 +29,9 @@ code {
 h3 {
   padding-top: 30px;
 }
+a:link,
+a:visited,
+a:active a:hover {
+  color: white;
+  text-decoration: none;
+}
