@@ -14,7 +14,9 @@ const storyRequest = async (
   try {
     console.log('searchTerm', searchTerm);
     const response = await axios.get<GetAsyncStoriesResponse>(
-      process.env.REACT_APP_API_ENDPOINT! + searchTerm
+      `${
+        process?.env?.REACT_APP_API_ENDPOINT || 'default component api'
+      }${searchTerm}`
     );
     return response.data;
   } catch (error: unknown) {

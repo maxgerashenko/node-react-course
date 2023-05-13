@@ -13,9 +13,11 @@ export default class FetchComponent extends Component<
   }
 
   componentDidMount() {
-    fetch(
-      process.env.REACT_APP_API_ENDPOINT! + process.env.REACT_APP_DEFAULT_QUERY!
-    )
+    const url = `${process?.env?.REACT_APP_API_ENDPOINT || 'bad endpoint'}${
+      process?.env?.REACT_APP_DEFAULT_QUERY || 'default request'
+    }`;
+
+    fetch(url)
       .then((response) => response.json())
       .then((data: any) => this.setState({ title: data.hits[0].title }));
 

@@ -7,7 +7,10 @@ import { useLocalStorageState } from '../advancedState/useLocalStorageState';
 import { Search } from '../advancedState/search';
 
 export function AdvancedStateInner() {
-  const [searchTerm, setSearchTerm] = useLocalStorageState('search', 'React'),
+  const [searchTerm, setSearchTerm] = useLocalStorageState(
+      'search',
+      'Seatch from localstorage'
+    ),
     context = useContext(StoriesContext);
 
   if (!context) {
