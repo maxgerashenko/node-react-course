@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { StoriesDispatcher } from '../advancedState/context';
 import { Story } from './data';
 import axios from 'axios';
-import { debounce } from 'lodash';
+import { useDebounce } from '../advancedState/useDebounce';
 
 export interface GetAsyncStoriesResponse {
   hits: Story[];
@@ -27,9 +27,7 @@ const fetchResults = async (
   searchTerm: string,
   dispatch: StoriesDispatcher
 ) => {
-  if (searchTerm == null || searchTerm === '') {
-    return [];
-  }
+  if (searchTerm == null || searchTerm === '') return [];
 
   dispatch({
     type: 'FETCH_INIT',
@@ -51,11 +49,13 @@ export const useFetchData = (
   searchTerm: string,
   dispatch: StoriesDispatcher
 ) => {
-  const debounced = debounce(() => fetchResults(searchTerm, dispatch));
+  const debouncedFetch = useDebounce(() => {
+    fetchResults(searchTerm, dispatch);
+  });
 
   useEffect(() => {
     if (!searchTerm || searchTerm === '') return;
 
-    fetchResults(searchTerm, dispatch);
-  }, [searchTerm]);
+    debouncedFetch();
+  }, [searchTerm, debouncedFetch]);
 };

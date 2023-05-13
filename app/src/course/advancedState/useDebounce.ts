@@ -1,9 +1,18 @@
 import { debounce } from 'lodash';
-import { useMemo, useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 
-export function useDebounce<T, S>(onChange: () => void, deps: string[]) {
-  const debounced = useMemo(() => debounce(onChange, 1000), deps);
+export function useDebounce<T, S>(
+  fetchResults: () => void,
+  deps: string[] = []
+) {
+  const debounced = useCallback(
+    debounce(() => {
+      fetchResults();
+    }, 1000),
+    deps
+  );
 
+  // cancel on on unsubscrive
   useEffect(() => {
     return () => {
       debounced.cancel();
