@@ -12,7 +12,6 @@ const storyRequest = async (
   searchTerm: string
 ): Promise<GetAsyncStoriesResponse> => {
   try {
-    console.log('searchTerm', searchTerm);
     const response = await axios.get<GetAsyncStoriesResponse>(
       `${
         process?.env?.REACT_APP_API_ENDPOINT || 'default component api'
@@ -47,7 +46,7 @@ export const useFetchData = (
         type: 'FETCH_FAILURE',
       });
     }
-  }, []);
+  }, [searchTerm]);
 
   useEffect(() => {
     let ignore = false;
