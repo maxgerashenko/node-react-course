@@ -1,21 +1,21 @@
-import { useEffect } from 'react';
-import { StoriesDispatcher } from '../advancedState/context';
-import { Story } from './data';
-import axios from 'axios';
-import { useDebounce } from '../advancedState/useDebounce';
+import { useEffect, } from "react";
+import axios from "axios";
+import { StoriesDispatcher, } from "../advancedState/context";
+import { useDebounce, } from "../advancedState/useDebounce";
+import { Story, } from "./data";
 
 export interface GetAsyncStoriesResponse {
   hits: Story[];
 }
 
 const storyRequest = async (
-  searchTerm: string
+  searchTerm: string,
 ): Promise<GetAsyncStoriesResponse> => {
   try {
     const response = await axios.get<GetAsyncStoriesResponse>(
       `${
-        process?.env?.REACT_APP_API_ENDPOINT || 'default component api'
-      }${searchTerm}`
+        process?.env?.REACT_APP_API_ENDPOINT || "default component api"
+      }${searchTerm}`,
     );
     return response.data;
   } catch (error: unknown) {
@@ -25,17 +25,17 @@ const storyRequest = async (
 
 const fetchResults = async (
   searchTerm: string,
-  dispatch: StoriesDispatcher
+  dispatch: StoriesDispatcher,
 ) => {
-  if (searchTerm == null || searchTerm === '') return [];
+  if (searchTerm == null || searchTerm === "") return [];
 
   dispatch({
-    type: 'FETCH_INIT',
-  });
+    type: "FETCH_INIT",
+  },);
   try {
     const startTime = Date.now();
 
-    const result = await storyRequest(searchTerm);
+    const result = await storyRequest(searchTerm,);
 
     const minLoadingTime = 1000; // Minimum loading time in ms
     const elapsed = Date.now() - startTime;
@@ -43,28 +43,28 @@ const fetchResults = async (
 
     setTimeout(() => {
       dispatch({
-        type: 'FETCH_SUCCESS',
+        type: "FETCH_SUCCESS",
         payload: result.hits,
-      });
-    }, delay);
+      },);
+    }, delay,);
   } catch (error) {
     dispatch({
-      type: 'FETCH_FAILURE',
-    });
+      type: "FETCH_FAILURE",
+    },);
   }
 };
 
 export const useFetchData = (
   searchTerm: string,
-  dispatch: StoriesDispatcher
+  dispatch: StoriesDispatcher,
 ) => {
   const debouncedFetch = useDebounce(() => {
-    fetchResults(searchTerm, dispatch);
-  });
+    fetchResults(searchTerm, dispatch,);
+  },);
 
   useEffect(() => {
-    if (!searchTerm || searchTerm === '') return;
+    if (!searchTerm || searchTerm === "") return;
 
     debouncedFetch();
-  }, [searchTerm, debouncedFetch]);
+  }, [searchTerm, debouncedFetch,],);
 };
