@@ -48,9 +48,9 @@ export function AdvancedStateInner() {
 
   if (isLoading) {
     return (
-      <div>
+      <div className="isLoading">
         {search}
-        <p>Loading ...</p>
+        <List list={stories} onRemoveItem={handleRemoveStory} />
       </div>
     );
   }

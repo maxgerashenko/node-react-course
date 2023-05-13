@@ -1,4 +1,4 @@
-import { Story, } from "../advancedState/data";
+import { Story } from '../advancedState/data';
 
 // State
 export type StoriesState = {
@@ -8,44 +8,44 @@ export type StoriesState = {
 };
 // Actions
 export type StoryActions =
-  | { type: "FETCH_INIT" }
-  | { type: "FETCH_SUCCESS"; payload: Story[] }
-  | { type: "FETCH_FAILURE" }
-  | { type: "SET_STORIES"; payload: Story[] }
-  | { type: "REMOVE_STORY"; payload: Story };
+  | { type: 'FETCH_INIT' }
+  | { type: 'FETCH_SUCCESS'; payload: Story[] }
+  | { type: 'FETCH_FAILURE' }
+  | { type: 'SET_STORIES'; payload: Story[] }
+  | { type: 'REMOVE_STORY'; payload: Story };
 // Reducer Type
 export type storiesReducerType = (
   state: StoriesState,
   action: StoryActions
 ) => StoriesState;
 // Reducer
-export const storiesReducer = (state: StoriesState, action: StoryActions,) => {
+export const storiesReducer = (state: StoriesState, action: StoryActions) => {
   switch (action.type) {
-    case "FETCH_INIT":
+    case 'FETCH_INIT':
       return {
         ...state,
         isLoading: true,
         isError: false,
       };
-    case "FETCH_SUCCESS":
+    case 'FETCH_SUCCESS':
       return {
         stories: action.payload,
-        isLoading: false,
+        isLoading: true,
         isError: false,
       };
-    case "FETCH_FAILURE":
+    case 'FETCH_FAILURE':
       return {
         ...state,
         isLoading: false,
         isError: true,
       };
-    case "SET_STORIES":
-      return { ...state, stories: action.payload, };
-    case "REMOVE_STORY":
+    case 'SET_STORIES':
+      return { ...state, stories: action.payload };
+    case 'REMOVE_STORY':
       return {
         ...state,
         stories: state.stories.filter(
-          (story: any,) => action.payload.objectID !== story.objectID,
+          (story: any) => action.payload.objectID !== story.objectID
         ),
       };
     default:

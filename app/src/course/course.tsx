@@ -1,68 +1,66 @@
-import {useContext} from "react";
-import Conditions from "./conditions";
-import {Context} from "./context/context";
-import {Tasks} from "./contextReducer/tasks";
-import FetchComponent from "./fetchComponent";
-import {Counter, HigherOrderFunction} from "./higherOrderFunction";
-import {PropsToList} from "./propsToList";
-import {StateToComponent} from "./stateToComponent";
-import CheckToShow from "../checkToShow";
-import {ThemeContext} from "../contexts";
-import {AdvancdedSate} from "./advancedState/advancdedSate";
+import { useContext } from 'react';
+import Conditions from './conditions';
+import { Context } from './context/context';
+import { Tasks } from './contextReducer/tasks';
+import FetchComponent from './fetchComponent';
+import { Counter, HigherOrderFunction } from './higherOrderFunction';
+import { PropsToList } from './propsToList';
+import { StateToComponent } from './stateToComponent';
+import CheckToShow from '../checkToShow';
+import { ThemeContext } from '../contexts';
+import { AdvancdedSate } from './advancedState/advancdedSate';
 
-type Status = "info" | "warning" | "error";
+type Status = 'info' | 'warning' | 'error';
 type NotificationProps = {
   text: string;
   status: Status;
 };
 
-export default function Course () {
+export default function Course() {
+  const { theme }: any = useContext(ThemeContext),
+    isHigherOrderFunction = true;
 
-    const {theme}: any = useContext(ThemeContext),
-        isHigherOrderFunction = true;
+  return (
+    <div className={`app-course ${theme}-mode`}>
+      <CheckToShow title="Advanced State">
+        <AdvancdedSate />
+      </CheckToShow>
 
-    return (
-        <div className={`app-course ${theme}`}>
-            <CheckToShow title="Advanced State">
-                <AdvancdedSate />
-            </CheckToShow>
+      <CheckToShow title="Context + Reducer">
+        <Tasks />
+      </CheckToShow>
 
-            <CheckToShow title="Context + Reducer">
-                <Tasks />
-            </CheckToShow>
+      <CheckToShow title="Conditions">
+        <Conditions />
+      </CheckToShow>
 
-            <CheckToShow title="Conditions">
-                <Conditions />
-            </CheckToShow>
+      <CheckToShow title="Context">
+        <Context />
+      </CheckToShow>
 
-            <CheckToShow title="Context">
-                <Context />
-            </CheckToShow>
+      <CheckToShow title="isHigherOrderFunction">
+        <HigherOrderFunction />
 
-            <CheckToShow title="isHigherOrderFunction">
-                <HigherOrderFunction />
+        <Counter />
+      </CheckToShow>
 
-                <Counter />
-            </CheckToShow>
+      <CheckToShow title="FetchComponent">
+        <FetchComponent />
 
-            <CheckToShow title="FetchComponent">
-                <FetchComponent />
+        <Counter />
+      </CheckToShow>
 
-                <Counter />
-            </CheckToShow>
+      <CheckToShow title="PropsToList">
+        <PropsToList />
 
-            <CheckToShow title="PropsToList">
-                <PropsToList />
+        <Counter />
+      </CheckToShow>
 
-                <Counter />
-            </CheckToShow>
+      <CheckToShow title="StateToComponent">
+        <StateToComponent />
 
-            <CheckToShow title="StateToComponent">
-                <StateToComponent />
-
-                <Counter />
-            </CheckToShow>
-        </div>
-    );
-
+        <Counter />
+      </CheckToShow>
+    </div>
+  );
 }

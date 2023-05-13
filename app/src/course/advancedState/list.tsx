@@ -1,4 +1,6 @@
 import { Story } from '../advancedState/data';
+import './loading.scss';
+// import styles from './list.module.scss';
 
 export function Item({
   objectID,
@@ -10,8 +12,7 @@ export function Item({
   onRemoveItem,
 }: Story & { onRemoveItem: (item: Story) => void }) {
   return (
-    <div className="list-item">
-      {' '}
+    <div className="listItem">
       <span>
         <a href={url}>{title}</a>
       </span>
@@ -22,7 +23,14 @@ export function Item({
         {' '}
         <button
           onClick={() =>
-            onRemoveItem({ url, title, author, num_comments, points, objectID })
+            onRemoveItem({
+              url,
+              title,
+              author,
+              num_comments,
+              points,
+              objectID,
+            })
           }
           type="button"
         >
@@ -37,7 +45,13 @@ interface ListProps {
   onRemoveItem: (item: Story) => void;
 }
 export function List({ list, onRemoveItem }: ListProps): any {
-  return list.map((item: Story) => (
+  const itemList = list.map((item: Story) => (
     <Item key={item.objectID} {...item} onRemoveItem={onRemoveItem} />
   ));
+
+  return (
+    <div className="list-wrapper">
+      <div className="list">{itemList}</div>
+    </div>
+  );
 }
