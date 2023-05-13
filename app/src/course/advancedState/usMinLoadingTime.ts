@@ -7,7 +7,7 @@ export async function usMinLoadingTime(
 
   const result = await onRequest(searchTerm);
 
-  const minLoadingTime = 1000; // Minimum loading time in ms
+  const minLoadingTime = 10000; // Minimum loading time in ms
   const elapsed = Date.now() - startTime;
   const delay = elapsed > minLoadingTime ? 0 : minLoadingTime - elapsed;
 
