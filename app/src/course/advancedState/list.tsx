@@ -1,6 +1,6 @@
-import { Story } from '../advancedState/data';
+import { Story } from './data';
 import './loading.scss';
-// import styles from './list.module.scss';
+import styles from './list.module.scss';
 
 export function Item({
   objectID,
@@ -12,7 +12,7 @@ export function Item({
   onRemoveItem,
 }: Story & { onRemoveItem: (item: Story) => void }) {
   return (
-    <div className="listItem">
+    <div className={`listItem ${styles.listItem}`}>
       <span>
         <a href={url}>{title}</a>
       </span>

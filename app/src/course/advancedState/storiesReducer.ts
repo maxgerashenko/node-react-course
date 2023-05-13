@@ -30,7 +30,7 @@ export const storiesReducer = (state: StoriesState, action: StoryActions) => {
     case 'FETCH_SUCCESS':
       return {
         stories: action.payload,
-        isLoading: true,
+        isLoading: false,
         isError: false,
       };
     case 'FETCH_FAILURE':
