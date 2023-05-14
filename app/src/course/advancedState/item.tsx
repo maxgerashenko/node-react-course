@@ -2,7 +2,6 @@ import { logComponent } from '../advancedState/advancdedSate';
 import { Story } from '../advancedState/data';
 import styles from './list.module.scss';
 
-
 export const Item = ({
   objectID,
   url,
