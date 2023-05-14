@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, } from "react";
 
-export const useLocalStorageState = (key: any, initialState: any) => {
-  const isMounted = useRef(false);
+export const useLocalStorageState = (key: any, initialState: any,) => {
+  const isMounted = useRef(false,);
 
-  const [value, setValue] = useState(localStorage.getItem(key) || initialState);
+  const [value, setValue,] = useState(localStorage.getItem(key,) || initialState,);
 
   useEffect(() => {
     // avoid first rerender;
@@ -12,8 +12,8 @@ export const useLocalStorageState = (key: any, initialState: any) => {
       return;
     }
 
-    localStorage.setItem(key, value);
-  }, [value, key]);
+    localStorage.setItem(key, value,);
+  }, [value, key,],);
 
-  return [value, setValue];
+  return [value, setValue,];
 };

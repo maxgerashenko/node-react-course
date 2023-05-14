@@ -1,8 +1,10 @@
 import { Story } from './data';
 import './loading.scss';
 import styles from './list.module.scss';
+import { memo } from 'react';
+import { logComponent } from '../advancedState/advancdedSate';
 
-export function Item({
+export const Item = ({
   objectID,
   url,
   title,
@@ -10,8 +12,8 @@ export function Item({
   num_comments,
   points,
   onRemoveItem,
-}: Story & { onRemoveItem: (item: Story) => void }) {
-  return (
+}: Story & { onRemoveItem: (item: Story) => void }) =>
+  logComponent('list-item') && (
     <div className={`listItem ${styles.listItem}`}>
       <span>
         <a href={url}>{title}</a>
@@ -39,19 +41,24 @@ export function Item({
       </span>
     </div>
   );
-}
+
 interface ListProps {
   list: Story[];
   onRemoveItem: (item: Story) => void;
 }
-export function List({ list, onRemoveItem }: ListProps): any {
-  const itemList = list.map((item: Story) => (
-    <Item key={item.objectID} {...item} onRemoveItem={onRemoveItem} />
-  ));
+export const List = memo(
+  function List({ list, onRemoveItem }: ListProps): any {
+    const itemList = list.map((item: Story) => (
+      <Item key={item.objectID} {...item} onRemoveItem={onRemoveItem} />
+    ));
 
-  return (
-    <div className={`listWrapper ${styles.listWrapper}`}>
-      <div className="list">{itemList}</div>
-    </div>
-  );
-}
+    return (
+      logComponent('list') && (
+        <div className={`listWrapper ${styles.listWrapper}`}>
+          <div className="list">{itemList}</div>
+        </div>
+      )
+    );
+  },
+  (pre, next) => pre.list === next.list
+);
