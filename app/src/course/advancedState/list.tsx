@@ -3,44 +3,7 @@ import './loading.scss';
 import styles from './list.module.scss';
 import { memo } from 'react';
 import { logComponent } from '../advancedState/advancdedSate';
-
-export const Item = ({
-  objectID,
-  url,
-  title,
-  author,
-  num_comments,
-  points,
-  onRemoveItem,
-}: Story & { onRemoveItem: (item: Story) => void }) =>
-  logComponent('list-item') && (
-    <div className={`listItem ${styles.listItem}`}>
-      <span>
-        <a href={url}>{title}</a>
-      </span>
-      <span>{author}</span>
-      <span>{num_comments}</span>
-      <span>{points}</span>{' '}
-      <span>
-        {' '}
-        <button
-          onClick={() =>
-            onRemoveItem({
-              url,
-              title,
-              author,
-              num_comments,
-              points,
-              objectID,
-            })
-          }
-          type="button"
-        >
-          Dismiss{' '}
-        </button>{' '}
-      </span>
-    </div>
-  );
+import { Item } from '../advancedState/item';
 
 interface ListProps {
   list: Story[];
