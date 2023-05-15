@@ -1,14 +1,12 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './app';
+import { App } from './app';
 import reportWebVitals from './reportWebVitals';
 
-if (!('process' in window)) {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  window.process = {};
-}
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+if (!('process' in window)) window.process = {};
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

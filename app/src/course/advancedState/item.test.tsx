@@ -1,8 +1,10 @@
+export {};
+
 import { render, fireEvent } from '@testing-library/react';
 import { Item } from './item'; // Path to your Item component
 import { Story } from './data';
 
-describe('Item', () => {
+describe.only('Item', () => {
   const mockOnRemoveItem = jest.fn();
 
   const story: Story = {

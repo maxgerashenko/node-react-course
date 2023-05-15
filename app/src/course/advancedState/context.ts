@@ -8,9 +8,5 @@ export type StoriesContextType = {
   state: StoriesState;
   dispatch: StoriesDispatcher;
 };
-export type StoriesContexTypeArray = [
-  state: StoriesState,
-  dispatch: StoriesDispatcher
-];
 
 export const StoriesContext = createContext<StoriesContextType | null>(null,);

@@ -4,7 +4,7 @@ import { ThemeProvider } from './themeProvider';
 import { DarkMode } from './darkMode';
 import { Footer } from './footer';
 
-const App = () => (
+export const App = () => (
   <div className="app">
     <ThemeProvider>
       <DarkMode />
@@ -15,5 +15,3 @@ const App = () => (
     </ThemeProvider>
   </div>
 );
-
-export default App;
