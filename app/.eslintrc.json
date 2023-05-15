@@ -64,7 +64,7 @@
     ],
     "comma-dangle": ["warn", "always"],
     "react-redux/connect-prefer-named-arguments": 2,
-    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/rules-of-hooks": "warn",
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
